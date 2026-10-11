@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lapse: warrant canaries that die loudly (on Arkiv)</title>
+<style>
+:root{--bg:#0d1117;--fg:#e6edf3;--mut:#8b949e;--card:#161b22;--line:#30363d;--ok:#2ea043;--warn:#d29922;--bad:#f85149;--forge:#a371f7}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+header{padding:20px 28px;border-bottom:1px solid var(--line)}h1{margin:0;font-size:26px}h1 span{color:var(--mut);font-weight:400;font-size:16px}
+main{display:grid;grid-template-columns:1fr 360px;gap:20px;padding:20px 28px}@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:16px}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-weight:700;font-size:13px;color:#fff}
+.ALIVE{background:var(--ok)}.OVERDUE{background:var(--warn)}.LAPSED{background:var(--bad)}.UNKNOWN{background:#555}.FORGED{background:var(--forge)}
+code,pre{font:12px/1.4 ui-monospace,monospace;background:#0b0f14;border:1px solid var(--line);border-radius:6px}pre{padding:10px;white-space:pre-wrap;word-break:break-all}code{padding:1px 4px}
+.mut{color:var(--mut)}table{width:100%;border-collapse:collapse;font-size:13px}td,th{text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
+a{color:#58a6ff}#feed div{font:12px ui-monospace,monospace;border-bottom:1px solid var(--line);padding:4px 0}
+input,button{font:inherit;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:#0b0f14;color:var(--fg)}button{cursor:pointer;background:#238636;border-color:#238636}
+.stmt{font-style:italic;border-left:3px solid var(--line);padding-left:10px}
+</style></head><body>
+<header><h1>Lapse <span>warrant canaries that die loudly, on Arkiv</span></h1>
+<div class="mut">Every canary is an Arkiv entity whose Entity Expiration is its renewal deadline plus a grace period. Stop renewing and it vanishes from the query surface by itself. Trust comes from <code>$creator</code>, bound to a wallet published at the issuer's own <code>/.well-known/lapse.json</code>. This page has no backend: it queries the public Tiramisu RPC from your browser.</div></header>
+<main><section>
+<div id="issuers"></div>
+<div class="card"><h3 style="margin-top:0">Check any issuer</h3>
+<form id="custom"><input id="cslug" placeholder="issuer slug" size="18"> <input id="cwallet" placeholder="bound wallet 0x…" size="44"> <button>Check</button></form>
+<div class="mut">Trust root here is whatever wallet you type; in production it comes from the issuer's domain.</div></div>
+</section><aside>
+<div class="card"><h3 style="margin-top:0">Live Arkiv events <span id="wsstate" class="mut"></span></h3><div class="mut">WebSocket <code>watchEntityEvents</code>, Lapse entities highlighted.</div><div id="feed"></div></div>
+<div class="card"><h3 style="margin-top:0">Verify it yourself</h3><div class="mut">No need to trust this page. Same query from a terminal:</div>
+<pre>git clone https://github.com/northstar-trustrail/lapse
+cd lapse && npm ci
+node cli/lapse.mjs check example-vpn   # exit 0 ALIVE, 1 OVERDUE, 2 LAPSED</pre>
+<div class="mut">Network: Tiramisu testnet, chain 7738577 · <a href="https://github.com/northstar-trustrail/lapse">source (MIT)</a> · <a href="https://github.com/northstar-trustrail/lapse/blob/main/arkiv/schema.md">schema</a></div></div>
+</aside></main>
+<script type="module" src="./app.js"></script></body></html>

@@ -1,0 +1,7 @@
+{
+  "about": "Lapse domain binding. Only the owner of this origin can edit this file, so it is the trust root that maps issuer slugs to the Arkiv wallet whose $creator is trusted. All issuers here are synthetic demo services.",
+  "issuers": {
+    "example-vpn": { "name": "Example VPN (demo)", "wallet": "0x2e6C27eE29865110beb601175bF628b1230F4eF1" },
+    "dead-drop-mail": { "name": "Dead Drop Mail (demo, allowed to lapse)", "wallet": "0x2e6C27eE29865110beb601175bF628b1230F4eF1" }
+  }
+}
