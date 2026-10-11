@@ -1,0 +1,22 @@
+{
+  "name": "lapse",
+  "version": "0.1.0",
+  "description": "Warrant canaries that die loudly, on Arkiv",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build": "node web/build.mjs",
+    "lapse": "node cli/lapse.mjs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@arkiv-network/sdk": "^0.8.1",
+    "viem": "^2.57.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "bin": {
+    "lapse": "cli/lapse.mjs"
+  }
+}
