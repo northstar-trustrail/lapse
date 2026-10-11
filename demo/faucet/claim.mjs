@@ -6,7 +6,7 @@
 import fs from "fs"; import http from "http"; import { chromium } from "playwright-core";
 import { privateKeyToAccount } from "viem/accounts"; import { createSiweMessage } from "viem/siwe";
 const role = process.argv[2] || "issuer";
-const W = JSON.parse(fs.readFileSync("process.env.LAPSE_WALLETS"));
+const W = JSON.parse(fs.readFileSync(process.env.LAPSE_WALLETS));
 const acct = privateKeyToAccount(W[role].privateKey);
 const H = "https://hub.arkiv.network", chainId = 7738577;
 const cookies = {};

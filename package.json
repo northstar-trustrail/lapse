@@ -14,7 +14,8 @@
     "viem": "^2.57.4"
   },
   "devDependencies": {
-    "esbuild": "^0.28.2"
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.64.0"
   },
   "bin": {
     "lapse": "cli/lapse.mjs"
